@@ -21,6 +21,7 @@ Route::group(['middleware' => ['auth']], function () {
     // 国管理
     Route::get('/admin/country', 'CountryController@index')->name('country.index');
     Route::post('/admin/country', 'CountryController@store')->name('country.store');
+    Route::patch('/admin/country', 'CountryController@update')->name('country.update');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

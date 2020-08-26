@@ -60,30 +60,16 @@
 							</tr>
 						  </thead>
 						  <tbody>
+							@foreach ($countries as $country)
 							<tr>
-							  <td>1</td>
-							  <td>ブラジル</td>
+							  <td>{{ $country->id }}</td>
+							  <td>{{ $country->country_name }}</td>
 							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
-								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
+								<button type="button" class="button button-aqua button-mini country-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $country->id }}" data-name="{{ $country->country_name }}">変更</button>
+								<button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
-							<tr>
-							  <td>2</td>
-							  <td>アメリカ</td>
-							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
-								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
-							  </td>
-							</tr>
-							<tr>
-							  <td>3</td>
-							  <td>イギリス</td>
-							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
-								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
-							  </td>
-							</tr>
+							@endforeach
 						  </tbody>
 						</table>
 
@@ -98,6 +84,9 @@
 						</ul>
 
 						<!-- Modal -->
+						<form action="{{ route('country.update') }}" method="POST">
+							@method("PATCH")
+							@csrf
 						<div class="modal fade" id="modal-default">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -111,19 +100,21 @@
 									<div class="form-group row">
 										<label for="name" class="col-sm-2 col-form-label">国名称</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="" placeholder="name">
+											<input type="text" class="form-control" id="country-id" name="id">
+											<input type="text" class="form-control" id="country-name" name="country_name" placeholder="name">
 										</div>
 									</div>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
-								  <button type="button" class="button button-aqua">変更</button>
+								  <button type="submit" class="button button-aqua">変更</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
 							</div>
 							<!-- /.modal-dialog -->
 						  </div>
+						</form>
 						  <!-- /.modal -->
 
 
@@ -203,5 +194,19 @@
 
 		</section><!-- #content end -->
 
+
+@endsection
+
+
+@section('script')
+	<script>
+		$(function(){
+			$('.country-edit').click((event) => {
+				const target = $(event.target);
+				$('#country-id').val(target.data('id'));
+				$('#country-name').val(target.data('name'));
+			})
+		})
+	</script>
 
 @endsection

@@ -232,6 +232,9 @@
 	<script src="{{ asset('js/functions.js') }}"></script>
 
 
+@yield('script')
+
+
 <!-- フラッシュメッセージ -->
 @if (session('msg_success'))
   <script>
@@ -245,9 +248,17 @@
   <script>
   // 削除時
     $(function () {
-      toastr.error('{{ session('msg_danger') }}');
+      toastr.warnig('{{ session('msg_danger') }}');
     });
   </script>
+@endif
+{{-- エラー時 --}}
+@if(count($errors) > 0)
+	@foreach($errors->all() as $error)
+	<script>
+		toastr.error("{{ $error }}");
+	</script>
+	@endforeach
 @endif
 
 

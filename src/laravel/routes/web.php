@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', 'FrontController@index')->name('front.index');
+
+//管理者のみ
+Route::group(['middleware' => ['auth']], function () {
+    Route::get('/admin', 'SkaterController@index')->name('skater.admin');
 });
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();

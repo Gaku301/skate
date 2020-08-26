@@ -8,7 +8,7 @@
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>スケーター管理</h1>
+				<h1>国名管理</h1>
 				<span>Ways to enhance your Forms</span>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -29,52 +29,17 @@
 
 					<div class="postcontent">
 
-						<h3>スケーター追加</h3>
+						<h3>国追加</h3>
 
-						<form>
+						<form action="{{ route('country.store') }}" method="POST">
+							@csrf
 							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">名前</label>
+								<label for="country_name" class="col-sm-2 col-form-label">国名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name">
+									<input type="text" class="form-control" id="country_name" name="country_name" placeholder="name">
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
-							<div class="form-group row">
-								<label for="country" class="col-sm-2 col-form-label">国名</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="country" id="">
-										<option value=""></option>
-										<option value="">アメリカ</option>
-										<option value="">イギリス</option>
-										<option value="">ブラジル</option>
-									</select>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">インスタURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">ツイッターURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">フェイスブックURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">画像</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file">
-								</div>
-							</div>
-	
 							<div class="form-group row center">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-blue">追加</button>
@@ -90,7 +55,6 @@
 						  <thead>
 							<tr>
 							  <th>id</th>
-							  <th>名前</th>
 							  <th>国名</th>
 							  <th></th>
 							</tr>
@@ -98,29 +62,26 @@
 						  <tbody>
 							<tr>
 							  <td>1</td>
-							  <td>Otto</td>
 							  <td>ブラジル</td>
 							  <td>
-								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
 							<tr>
 							  <td>2</td>
-							  <td>Jacob</td>
 							  <td>アメリカ</td>
 							  <td>
-								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
 							<tr>
 							  <td>3</td>
-							  <td>Larry</td>
 							  <td>イギリス</td>
 							  <td>
-								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
 						  </tbody>
@@ -135,6 +96,35 @@
 						  <li class="page-item"><a class="page-link" href="#">5</a></li>
 						  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
+
+						<!-- Modal -->
+						<div class="modal fade" id="modal-default">
+							<div class="modal-dialog">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title">変更</h4>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group row">
+										<label for="name" class="col-sm-2 col-form-label">国名称</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="" placeholder="name">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer justify-content-between">
+								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
+								  <button type="button" class="button button-aqua">変更</button>
+								</div>
+							  </div>
+							  <!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						  </div>
+						  <!-- /.modal -->
 
 
 						<!-- Modal -->
@@ -160,6 +150,7 @@
 							<!-- /.modal-dialog -->
 						  </div>
 						  <!-- /.modal -->
+
 
 
 						<div class="line"></div>
@@ -204,6 +195,7 @@
 
 						</div>
 					</div><!-- .sidebar end -->
+
 
 				</div>
 

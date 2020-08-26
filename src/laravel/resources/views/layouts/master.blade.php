@@ -17,6 +17,9 @@
 
 	<link rel="stylesheet" href="{{ asset('css/responsive.css') }}" type="text/css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- toastr -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+ 
 
 	<!-- Document Title
 	============================================= -->
@@ -43,8 +46,8 @@
 					<!-- Logo
 					============================================= -->
 					<div id="logo">
-						<a href="portfolio.html" class="standard-logo" data-dark-logo="images/logo-dark.png"><img src="images/logo.png" alt="Canvas Logo"></a>
-						<a href="portfolio.html" class="retina-logo" data-dark-logo="images/logo-dark@2x.png"><img src="images/logo@2x.png" alt="Canvas Logo"></a>
+						<a href="{{ route('front.index') }}" class="standard-logo" data-dark-logo="{{ asset('images/logo-dark.png') }}"><img src="{{ asset('images/logo.png') }}" alt="Canvas Logo"></a>
+						<a href="{{ route('front.index') }}" class="retina-logo" data-dark-logo="{{ asset('images/logo-dark@2x.png') }}"><img src="{{ asset('images/logo@2x.png') }}" alt="Canvas Logo"></a>
 					</div>
 					<!-- #logo end -->
 
@@ -122,14 +125,12 @@
 
 
 
-
-
-
 		<!-- Footer
 		============================================= -->
 		<footer id="footer" class="dark">
 
 			<div class="container">
+
 
 				<!-- Footer Widgets
 				============================================= -->
@@ -229,6 +230,27 @@
 	<!-- Footer Scripts
 	============================================= -->
 	<script src="{{ asset('js/functions.js') }}"></script>
+
+
+<!-- フラッシュメッセージ -->
+@if (session('msg_success'))
+  <script>
+  // 成功時
+    $(function () {
+      toastr.success('{{ session('msg_success') }}');
+    });
+  </script>
+@endif
+@if (session('msg_danger'))
+  <script>
+  // 削除時
+    $(function () {
+      toastr.error('{{ session('msg_danger') }}');
+    });
+  </script>
+@endif
+
+
 
 </body>
 </html>

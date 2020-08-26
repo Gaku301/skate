@@ -18,6 +18,9 @@ Route::get('/', 'FrontController@index')->name('front.index');
 //管理者のみ
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin', 'SkaterController@index')->name('skater.admin');
+    // 国管理
+    Route::get('/admin/country', 'CountryController@index')->name('country.index');
+    Route::post('/admin/country', 'CountryController@store')->name('country.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

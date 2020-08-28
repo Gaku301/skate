@@ -31,7 +31,9 @@
 
 						<h3>{{ $skater->name }}</h3>
 
-						<form>
+						<form action="" method="POST">
+							@csrf
+							@method("PATCH")
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">名前</label>
 								<div class="col-sm-10">
@@ -124,8 +126,8 @@
 
 								<h4>メニュー</h4>
 								<ul>
-									<li><a href="admin-skater.html"><div>スケーター管理</div></a></li>
-									<li><a href="admin-coutnry.html"><div>国追加</div></a></li>
+									<li><a href="{{ route('skater.admin') }}"><div>スケーター管理</div></a></li>
+									<li><a href="{{ route('country.index') }}"><div>国追加</div></a></li>
 									<li><a href="admin-category-skate.html"><div>カテゴリー（スケート関連）</div></a></li>
 									<li><a href="admin-category-tops.html"><div>カテゴリー（トップス関連）</div></a></li>
 								</ul>

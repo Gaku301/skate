@@ -16,6 +16,7 @@ class SkaterController extends Controller
 
     public function store(CreateSkaterRequest $request)
     {
+        // dd($request);
         $skater = new Skater($request->except(['_token']));
         $skater->save();
 

@@ -21,4 +21,11 @@ class SkaterController extends Controller
 
         return redirect()->back()->with('msg_success', 'スケーターを追加しました。');
     }
+
+    public function show(Skater $skater)
+    {
+        $skater = Skater::find($skater->id);
+
+        return view('skater.show', ['skater' => $skater]);
+    }
 }

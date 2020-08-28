@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth']], function () {
     // スケーター管理
     Route::get('/admin', 'SkaterController@index')->name('skater.admin');
     Route::post('/admin', 'SkaterController@store')->name('skater.store');
+    Route::get('/admin/show/{skater}', 'SkaterController@show')->name('skater.show');
 
     // 国管理
     Route::get('/admin/country', 'CountryController@index')->name('country.index');

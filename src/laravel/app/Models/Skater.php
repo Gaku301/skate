@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Skater extends Model
 {
-    protected $fillable = ['name', 'country_id'];
+    protected $fillable = ['name', 'country_id', 'instagram', 'twitter', 'facebook', 'youtube', 'thumbnail'];
 
     public function country()
     {

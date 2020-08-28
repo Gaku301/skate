@@ -30,4 +30,11 @@ class CountryController extends Controller
 
         return redirect()->back()->with('msg_success', '国を変更しました。');
     }
+
+    public function destroy(Request $request)
+    {
+        Country::destroy($request->id);
+
+        return redirect()->back()->with('msg_warning', '国を削除しました。');
+    }
 }

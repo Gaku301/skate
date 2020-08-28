@@ -66,7 +66,7 @@
 							  <td>{{ $country->country_name }}</td>
 							  <td>
 								<button type="button" class="button button-aqua button-mini country-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $country->id }}" data-name="{{ $country->country_name }}">変更</button>
-								<button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger">削除</button>
+								<button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $country->id }}">削除</button>
 							  </td>
 							</tr>
 							@endforeach
@@ -119,6 +119,9 @@
 
 
 						<!-- Modal -->
+						<form action="{{ route('country.destroy') }}" method="POST">
+							@method("DELETE")
+							@csrf
 						<div class="modal fade" id="modal-danger">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -129,17 +132,19 @@
 								  </button>
 								</div>
 								<div class="modal-body">
-								  <p class="">「スケーター名」に関する全ての記事が削除されますがよろしいですか？</p>
+									<input type="text" class="form-control" id="delete-id" name="id">
+									<p class="">国を削除してよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
-								  <button type="button" class="button button-red">削除</button>
+								  <button type="submit" class="button button-red">削除</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
 							</div>
 							<!-- /.modal-dialog -->
 						  </div>
+						</form>
 						  <!-- /.modal -->
 
 
@@ -200,6 +205,7 @@
 
 @section('script')
 	<script>
+		// edit
 		$(function(){
 			$('.country-edit').click((event) => {
 				const target = $(event.target);
@@ -207,6 +213,14 @@
 				$('#country-name').val(target.data('name'));
 			})
 		})
+		// delete
+		$(function(){
+			$('.country-delete').click((event) => {
+				const target = $(event.target);
+				$('#delete-id').val(target.data('id'));
+			})
+		})
+	
 	</script>
 
 @endsection

@@ -244,11 +244,11 @@
     });
   </script>
 @endif
-@if (session('msg_danger'))
+@if (session('msg_warning'))
   <script>
   // 削除時
     $(function () {
-      toastr.warnig('{{ session('msg_danger') }}');
+      toastr.warning('{{ session('msg_warning') }}');
     });
   </script>
 @endif

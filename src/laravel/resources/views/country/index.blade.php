@@ -36,7 +36,7 @@
 							<div class="form-group row">
 								<label for="country_name" class="col-sm-2 col-form-label">国名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="country_name" name="country_name" placeholder="name">
+									<input type="text" class="form-control" id="country_name" name="country_name" placeholder="name" required>
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>

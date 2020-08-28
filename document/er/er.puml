@@ -48,7 +48,7 @@ package "スケーター紹介"{
         削除日
     }
 
-    entity "カテゴリー詳細" as details{
+    entity "カテゴリー詳細" as category_details{
         +ID [PK]
         --
         #カテゴリーID [FK]
@@ -71,6 +71,7 @@ package "スケーター紹介"{
 skaters }o--ri--o| countries
 skaters }o--le--|{ posts
 posts }o--d--|{ categories
+categories --le--o{ category_details
 
 
 

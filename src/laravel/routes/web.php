@@ -17,7 +17,10 @@ Route::get('/', 'FrontController@index')->name('front.index');
 
 //管理者のみ
 Route::group(['middleware' => ['auth']], function () {
+    // スケーター管理
     Route::get('/admin', 'SkaterController@index')->name('skater.admin');
+    Route::post('/admin', 'SkaterController@store')->name('skater.store');
+
     // 国管理
     Route::get('/admin/country', 'CountryController@index')->name('country.index');
     Route::post('/admin/country', 'CountryController@store')->name('country.store');

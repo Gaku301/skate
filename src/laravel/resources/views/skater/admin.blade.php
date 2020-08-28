@@ -31,47 +31,54 @@
 
 						<h3>スケーター追加</h3>
 
-						<form>
+						<form action="{{ route('skater.store') }}" method="POST">
+							@csrf
 							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">名前</label>
+								<label for="name" class="col-sm-2 col-form-label">スケーター名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name">
+									<input type="text" class="form-control" id="" placeholder="name" name="name" required>
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="country" class="col-sm-2 col-form-label">国名</label>
 								<div class="col-sm-10">
-									<select class="form-control" name="country" id="">
+									<select class="form-control" name="country_id" id="" required>
 										<option value=""></option>
-										<option value="">アメリカ</option>
-										<option value="">イギリス</option>
-										<option value="">ブラジル</option>
+										@foreach (App\Models\Country::all() as $country)
+										<option value="{{ $country->id }}">{{ $country->country_name }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">インスタURL</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
+									<input type="text" class="form-control" id="" placeholder="" name="instagram">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">ツイッターURL</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
+									<input type="text" class="form-control" id="" placeholder="" name="twitter">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">フェイスブックURL</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="">
+									<input type="text" class="form-control" id="" placeholder="" name="facebook">
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="name" class="col-sm-2 col-form-label">YouTube</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="" placeholder="" name="youtube">
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">画像</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file">
+									<input type="file" class="form-control-file" id="file" name="thumbnail">
 								</div>
 							</div>
 	
@@ -96,33 +103,17 @@
 							</tr>
 						  </thead>
 						  <tbody>
+							  @foreach ($skaters as $skater)
 							<tr>
-							  <td>1</td>
-							  <td>Otto</td>
-							  <td>ブラジル</td>
+							  <td>{{ $skater->id }}</td>
+							  <td>{{ $skater->name }}</td>
+							  <td>{{ $skater->country->country_name }}</td>
 							  <td>
 								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
 								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
 							  </td>
 							</tr>
-							<tr>
-							  <td>2</td>
-							  <td>Jacob</td>
-							  <td>アメリカ</td>
-							  <td>
-								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
-							  </td>
-							</tr>
-							<tr>
-							  <td>3</td>
-							  <td>Larry</td>
-							  <td>イギリス</td>
-							  <td>
-								<a href="admin-skater-detail.html" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
-							  </td>
-							</tr>
+							  @endforeach
 						  </tbody>
 						</table>
 

@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-	
 
 		<!-- Page Title
 		============================================= -->
@@ -127,7 +126,6 @@
 						  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
 
-
 						<!-- Modal -->
 						<div class="modal fade" id="modal-danger">
 							<div class="modal-dialog">
@@ -152,9 +150,7 @@
 						  </div>
 						  <!-- /.modal -->
 
-
 						<div class="line"></div>
-
 
 					</div>
 

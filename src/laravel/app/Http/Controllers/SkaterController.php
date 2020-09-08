@@ -9,7 +9,7 @@ class SkaterController extends Controller
 {
     public function index()
     {
-        $skaters = Skater::all();
+        $skaters = Skater::paginate();
 
         return view('skater.admin', ['skaters' => $skaters]);
     }
@@ -17,9 +17,9 @@ class SkaterController extends Controller
     public function store(CreateSkaterRequest $request)
     {
         $skater = new Skater($request->except(['_token', 'thumbnail']));
-        $file_name = $request->thumbnail->store('public/thumbnail');
-        dd($file_name);
-        $skater->thumbnail = basename($file_name);
+        // $file_name = $request->thumbnail->store('public/thumbnail');
+        // dd($file_name);
+        // $skater->thumbnail = basename($file_name);
         $skater->save();
 
         return redirect()->back()->with('msg_success', 'スケーターを追加しました。');

@@ -13,7 +13,12 @@ class CreateCategoryDetailsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('category-details', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id')->constrained('categories');
+            $table->string('name');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +28,6 @@ class CreateCategoryDetailsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('category-details');
     }
 }

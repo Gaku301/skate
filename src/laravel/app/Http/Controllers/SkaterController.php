@@ -17,8 +17,10 @@ class SkaterController extends Controller
     public function store(CreateSkaterRequest $request)
     {
         $skater = new Skater($request->except(['_token', 'thumbnail']));
-        $file_name = $request->file('thumbnail')->store('public/thumbnail');
-        $skater->thumbnail = basename($file_name);
+        if ($request->has('thumbnail')) {
+            $file_name = $request->file('thumbnail')->store('public/thumbnail');
+            $skater->thumbnail = basename($file_name);
+        }
         $skater->save();
 
         return redirect()->back()->with('msg_success', 'スケーターを追加しました。');

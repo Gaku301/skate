@@ -30,7 +30,7 @@
 
 						<h3>スケーター追加</h3>
 
-						<form action="{{ route('skater.store') }}" method="POST">
+						<form action="{{ route('skater.store') }}" method="POST" enctype='multipart/form-data'>
 							@csrf
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">スケーター名</label>

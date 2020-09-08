@@ -30,7 +30,7 @@ class CreateSkaterRequest extends FormRequest
             'twitter' => 'nullable|string',
             'facebook' => 'nullable|string',
             'youtube' => 'nullable|string',
-            'thumbnail' => 'nullable|string',
+            'thumbnail' => 'nullable|',
         ];
     }
 

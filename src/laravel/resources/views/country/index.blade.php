@@ -94,7 +94,7 @@
 									<div class="form-group row">
 										<label for="name" class="col-sm-2 col-form-label">国名称</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="country-id" name="id">
+											<input type="hidden" class="form-control" id="country-id" name="id">
 											<input type="text" class="form-control" id="country-name" name="country_name" placeholder="name">
 										</div>
 									</div>
@@ -126,7 +126,7 @@
 								  </button>
 								</div>
 								<div class="modal-body">
-									<input type="text" class="form-control" id="delete-id" name="id">
+									<input type="hidden" class="form-control" id="delete-id" name="id">
 									<p class="">国を削除してよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">

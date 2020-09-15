@@ -31,10 +31,11 @@
 
 						<h3>{{ $skater->name }}</h3>
 
-						<form action="" method="POST">
+						<form action="{{ route('skater.update', ['skater' => $skater ]) }}" method="POST">
 							@csrf
 							@method("PATCH")
 							<div class="form-group row">
+								<input type="hidden" class="form-control" id="" placeholder="id" name="id" value="{{ $skater->id }}">
 								<label for="name" class="col-sm-2 col-form-label">名前</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="" placeholder="name" name="name" value="{{ $skater->name }}">
@@ -84,7 +85,7 @@
 							<div class="form-group row center mt-5">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-aqua">変更</button>
-									<button type="submit" class="button button-red">削除</button>
+									<button type="button" class="button button-red" data-toggle="modal" data-target="#modal-danger">削除</button>
 								</div>
 							</div>
 						</form>
@@ -106,7 +107,7 @@
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
-								  <button type="button" class="button button-red">削除</button>
+								  <button type="submit" class="button button-red">削除</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->

@@ -93,6 +93,9 @@
 						<div class="line"></div>
 
 						<!-- Modal -->
+						<form action="{{ route('skater.destroy',['skater' => $skater ]) }}" method="POST">
+							@csrf
+							@method("DELETE")
 						<div class="modal fade" id="modal-danger">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -103,6 +106,7 @@
 								  </button>
 								</div>
 								<div class="modal-body">
+								{{-- <input type="hidden" class="form-control" id="" placeholder="id" name="id" value="{{ $skater->id }}"> --}}
 								  <p class="">「スケーター名」に関する全ての記事が削除されますがよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">
@@ -115,6 +119,7 @@
 							<!-- /.modal-dialog -->
 						  </div>
 						  <!-- /.modal -->
+						</form>
 
 					</div>
 

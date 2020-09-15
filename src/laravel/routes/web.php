@@ -22,6 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin', 'SkaterController@store')->name('skater.store');
     Route::get('/admin/show/{skater}', 'SkaterController@show')->name('skater.show');
     Route::patch('/admin/show/{skater}', 'SkaterController@update')->name('skater.update');
+    Route::delete('/admin/show/{skater}', 'SkaterController@destroy')->name('skater.destroy');
 
     // 国管理
     Route::get('/admin/country', 'CountryController@index')->name('country.index');

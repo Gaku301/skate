@@ -45,4 +45,11 @@ class SkaterController extends Controller
 
         return redirect()->back()->with('msg_success', 'スケーター情報を変更しました。');
     }
+
+    public function destroy(Skater $skater)
+    {
+        Skater::destroy($skater->id);
+
+        return redirect()->route('skater.admin')->with('msg_warning', 'スケーター情報を削除しました。');
+    }
 }

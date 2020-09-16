@@ -2,12 +2,13 @@
 
 @section('content')
 
+
 		<!-- Page Title
 		============================================= -->
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>スケーター管理</h1>
+				<h1>カテゴリー管理</h1>
 				<span>Ways to enhance your Forms</span>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
@@ -28,59 +29,16 @@
 
 					<div class="postcontent">
 
-						<h3>スケーター追加</h3>
+						<h3>カテゴリ追加</h3>
 
-						<form action="{{ route('skater.store') }}" method="POST" enctype='multipart/form-data'>
-							@csrf
+						<form>
 							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">スケーター名</label>
+								<label for="name" class="col-sm-2 col-form-label">名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name" name="name" required>
+									<input type="text" class="form-control" id="" placeholder="name">
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
-							<div class="form-group row">
-								<label for="country" class="col-sm-2 col-form-label">国名</label>
-								<div class="col-sm-10">
-									<select class="form-control" name="country_id" id="" required>
-										<option value=""></option>
-										@foreach (App\Models\Country::all() as $country)
-										<option value="{{ $country->id }}">{{ $country->country_name }}</option>
-										@endforeach
-									</select>
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">インスタURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="" name="instagram">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">ツイッターURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="" name="twitter">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">フェイスブックURL</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="" name="facebook">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">YouTube</label>
-								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="" name="youtube">
-								</div>
-							</div>
-							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">画像</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file" name="thumbnail">
-								</div>
-							</div>
-	
 							<div class="form-group row center">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-blue">追加</button>
@@ -96,29 +54,77 @@
 						  <thead>
 							<tr>
 							  <th>id</th>
-							  <th>名前</th>
-							  <th>国名</th>
+							  <th>名称</th>
 							  <th></th>
 							</tr>
 						  </thead>
 						  <tbody>
-							  @foreach ($skaters as $skater)
 							<tr>
-							  <td>{{ $skater->id }}</td>
-							  <td>{{ $skater->name }}</td>
-							  <td>{{ $skater->country->country_name }}</td>
+							  <td>1</td>
+							  <td>デッキ</td>
 							  <td>
-								<a href="{{ route('skater.show', ['skater' => $skater]) }}" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
-							  @endforeach
+							<tr>
+							  <td>2</td>
+							  <td>ウィール</td>
+							  <td>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
+							  </td>
+							</tr>
+							<tr>
+							  <td>3</td>
+							  <td>ボード</td>
+							  <td>
+								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
+							  </td>
+							</tr>
 						  </tbody>
 						</table>
 
 						<ul class="pagination pagination-circle pagination-sm">
-							{{ $skaters->links() }}
+						  <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
+						  <li class="page-item active"><a class="page-link" href="#">1</a></li>
+						  <li class="page-item"><a class="page-link" href="#">2</a></li>
+						  <li class="page-item"><a class="page-link" href="#">3</a></li>
+						  <li class="page-item"><a class="page-link" href="#">4</a></li>
+						  <li class="page-item"><a class="page-link" href="#">5</a></li>
+						  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
 						</ul>
+
+						<!-- Modal -->
+						<div class="modal fade" id="modal-default">
+							<div class="modal-dialog">
+							  <div class="modal-content">
+								<div class="modal-header">
+								  <h4 class="modal-title">変更</h4>
+								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								  </button>
+								</div>
+								<div class="modal-body">
+									<div class="form-group row">
+										<label for="name" class="col-sm-2 col-form-label">名称</label>
+										<div class="col-sm-10">
+											<input type="text" class="form-control" id="" placeholder="name">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer justify-content-between">
+								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
+								  <button type="button" class="button button-aqua">変更</button>
+								</div>
+							  </div>
+							  <!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						  </div>
+						  <!-- /.modal -->
+
 
 						<!-- Modal -->
 						<div class="modal fade" id="modal-danger">
@@ -144,7 +150,9 @@
 						  </div>
 						  <!-- /.modal -->
 
+
 						<div class="line"></div>
+
 
 					</div>
 
@@ -172,6 +180,7 @@
 			</div>
 
 		</section><!-- #content end -->
+
 
 
 @endsection

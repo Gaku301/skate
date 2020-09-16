@@ -31,11 +31,12 @@
 
 						<h3>カテゴリ追加</h3>
 
-						<form>
+						<form action="{{ route('category.store') }}" method="POST">
+							@csrf
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">名称</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name">
+									<input type="text" class="form-control" id="" name="category_name" placeholder="name" required>
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>

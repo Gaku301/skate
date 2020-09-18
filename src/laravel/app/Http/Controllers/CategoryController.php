@@ -30,4 +30,11 @@ class CategoryController extends Controller
 
         return redirect()->back()->with('msg_success', 'カテゴリを変更しました。');
     }
+
+    public function destroy(Request $request)
+    {
+        Category::destroy($request->id);
+
+        return redirect()->back()->with('msg_warning', 'カテゴリを削除しました。');
+    }
 }

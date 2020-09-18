@@ -37,7 +37,6 @@
 								<label for="name" class="col-sm-2 col-form-label">名称</label>
 								<div class="col-sm-10">
 									<input type="text" class="form-control" id="" name="category_name" placeholder="name" required>
-									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
 							<div class="form-group row center">
@@ -60,44 +59,27 @@
 							</tr>
 						  </thead>
 						  <tbody>
+							  @foreach ($categories as $category)
 							<tr>
-							  <td>1</td>
-							  <td>デッキ</td>
+							  <td>{{ $category->id }}</td>
+							  <td>{{ $category->category_name }}</td>
 							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
+								<button type="button" class="button button-aqua button-mini category-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $category->id }}" data-name="{{ $category->category_name }}">変更</button>
 								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
 							  </td>
 							</tr>
-							<tr>
-							  <td>2</td>
-							  <td>ウィール</td>
-							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
-								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
-							  </td>
-							</tr>
-							<tr>
-							  <td>3</td>
-							  <td>ボード</td>
-							  <td>
-								<button type="button" class="button button-aqua button-mini" data-toggle="modal" data-target="#modal-default">変更</button>
-								<button type="button" class="button button-red button-mini" data-toggle="modal" data-target="#modal-danger">削除</button>
-							  </td>
-							</tr>
+							  @endforeach
 						  </tbody>
 						</table>
 
 						<ul class="pagination pagination-circle pagination-sm">
-						  <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-						  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item"><a class="page-link" href="#">5</a></li>
-						  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+							{{ $categories->links() }}
 						</ul>
 
 						<!-- Modal -->
+						<form action="{{ route('category.update') }}" method="POST">
+							@csrf
+							@method("PATCH")
 						<div class="modal fade" id="modal-default">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -111,13 +93,14 @@
 									<div class="form-group row">
 										<label for="name" class="col-sm-2 col-form-label">名称</label>
 										<div class="col-sm-10">
-											<input type="text" class="form-control" id="" placeholder="name">
+											<input type="hidden" class="form-control" id="category-id" name="id">
+											<input type="text" class="form-control" id="category-name" name="category_name">
 										</div>
 									</div>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
-								  <button type="button" class="button button-aqua">変更</button>
+								  <button type="submit" class="button button-aqua">変更</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
@@ -125,6 +108,7 @@
 							<!-- /.modal-dialog -->
 						  </div>
 						  <!-- /.modal -->
+						</form>
 
 
 						<!-- Modal -->
@@ -183,5 +167,28 @@
 		</section><!-- #content end -->
 
 
+
+@endsection
+
+
+@section('script')
+	<script>
+		// edit
+		$(function(){
+			$('.category-edit').click((event) => {
+				const target = $(event.target);
+				$('#category-id').val(target.data('id'));
+				$('#category-name').val(target.data('name'));
+			})
+		})
+		// delete
+		$(function(){
+			$('.country-delete').click((event) => {
+				const target = $(event.target);
+				$('#delete-id').val(target.data('id'));
+			})
+		})
+	
+	</script>
 
 @endsection

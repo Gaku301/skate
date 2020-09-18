@@ -33,6 +33,7 @@ Route::group(['middleware' => ['auth']], function () {
     // カテゴリ
     Route::get('/admin/category', 'CategoryController@index')->name('category.index');
     Route::post('/admin/category', 'CategoryController@store')->name('category.store');
+    Route::patch('/admin/category', 'CategoryController@update')->name('category.update');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

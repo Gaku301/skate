@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateCategoryReques;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,9 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        return view('category.index');
+        $categories = Category::paginate();
+
+        return view('category.index', ['categories' => $categories]);
     }
 
     public function store(Request $request)
@@ -18,5 +21,13 @@ class CategoryController extends Controller
         $category->save();
 
         return redirect()->back()->with('msg_success', 'カテゴリを追加しました。');
+    }
+
+    public function update(UpdateCategoryReques $request)
+    {
+        $category = Category::find($request->id);
+        $category->fill($request->except(['_token']))->update();
+
+        return redirect()->back()->with('msg_success', 'カテゴリを変更しました。');
     }
 }

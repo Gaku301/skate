@@ -109,7 +109,7 @@
 							  <td>{{ $skater->country->country_name }}</td>
 							  <td>
 								<a href="{{ route('skater.show', ['skater' => $skater]) }}" class="button button-mini">詳細</a>
-								<a href="admin-skater-post.html" class="button button-amber button-mini">記事</a>
+								<a href="{{ route('post.index', ['skater' => $skater]) }}" class="button button-amber button-mini">記事</a>
 							  </td>
 							</tr>
 							  @endforeach

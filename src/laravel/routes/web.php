@@ -35,6 +35,9 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/category', 'CategoryController@store')->name('category.store');
     Route::patch('/admin/category', 'CategoryController@update')->name('category.update');
     Route::delete('/admin/category', 'CategoryController@destroy')->name('category.destroy');
+
+    // 記事
+    Route::get('/admin/post/{skater}', 'PostController@index')->name('post.index');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

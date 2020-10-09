@@ -31,41 +31,41 @@
 
 						<h3>記事作成</h3>
 
-						<form>
+						<form action="{{ route('post.store', ['skater' => $skater]) }}" method="POST">
+							@csrf
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name">
-									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
+									<input type="hidden" class="form-control" id="" name="skater_id" value="{{ $skater->id }}">
+									<input type="text" class="form-control" id="" placeholder="name" name="product_name" required>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="country" class="col-sm-2 col-form-label">カテゴリー名</label>
 								<div class="col-sm-10">
-									<select class="form-control" name="country" id="">
+									<select class="form-control" name="category_id" id="" required>
 										<option value=""></option>
-										<option value="">アメリカ</option>
-										<option value="">イギリス</option>
-										<option value="">ブラジル</option>
+										@foreach (\App\Models\Category::all() as $category)
+										<option value="{{ $category->id }}">{{ $category->category_name }}</option>
+										@endforeach
 									</select>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品説明</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" id="" rows="5"></textarea>
+									<textarea class="form-control" id="" rows="5" name="product_introduction" required></textarea>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">画像</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file">
+									<input type="file" class="form-control-file" id="file" name="product_img">
 								</div>
 							</div>
 							<div class="form-group row center mt-5">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-blue">追加</button>
-									<button type="submit" class="button button-red">削除</button>
 								</div>
 							</div>
 						</form>
@@ -75,6 +75,8 @@
 					
 						<div id="shop" class="shop product-3 grid-container clearfix" data-layout="fitRows">
 
+							@foreach ($posts as $post)
+								
 							<article class="portfolio-item pf-media pf-icons">
 								<div class="portfolio-image">
 									<a href="admin-post-detail.html">
@@ -85,70 +87,11 @@
 									</a>
 								</div>
 								<div class="portfolio-desc">
-									<h3><a href="admin-post-detail.html">商品名</a></h3>
+									<h3><a href="admin-post-detail.html">{{ $post->product_name }}</a></h3>
 									<span><a href="#">説明</a></span>
 								</div>
 							</article>
-
-							<article class="portfolio-item pf-media pf-icons">
-								<div class="portfolio-image">
-									<a href="admin-post-detail.html">
-										<img src="images/portfolio/4/1.jpg" alt="Open Imagination">
-									</a>
-									<a href="admin-post-detail.html">
-										<div class="portfolio-overlay"></div>
-									</a>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="admin-post-detail.html">商品名</a></h3>
-									<span><a href="#">説明</a></span>
-								</div>
-							</article>
-
-							<article class="portfolio-item pf-media pf-icons">
-								<div class="portfolio-image">
-									<a href="admin-post-detail.html">
-										<img src="images/portfolio/4/1.jpg" alt="Open Imagination">
-									</a>
-									<a href="admin-post-detail.html">
-										<div class="portfolio-overlay"></div>
-									</a>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="admin-post-detail.html">商品名</a></h3>
-									<span><a href="#">説明</a></span>
-								</div>
-							</article>
-
-							<article class="portfolio-item pf-media pf-icons">
-								<div class="portfolio-image">
-									<a href="admin-post-detail.html">
-										<img src="images/portfolio/4/1.jpg" alt="Open Imagination">
-									</a>
-									<a href="admin-post-detail.html">
-										<div class="portfolio-overlay"></div>
-									</a>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="admin-post-detail.html">商品名</a></h3>
-									<span><a href="#">説明</a></span>
-								</div>
-							</article>
-
-							<article class="portfolio-item pf-media pf-icons">
-								<div class="portfolio-image">
-									<a href="admin-post-detail.html">
-										<img src="images/portfolio/4/1.jpg" alt="Open Imagination">
-									</a>
-									<a href="admin-post-detail.html">
-										<div class="portfolio-overlay"></div>
-									</a>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="admin-post-detail.html">商品名</a></h3>
-									<span><a href="#">説明</a></span>
-								</div>
-							</article>
+							@endforeach
 
 						</div>
 
@@ -192,10 +135,9 @@
 
 								<h4>メニュー</h4>
 								<ul>
-									<li><a href="admin-skater.html"><div>スケーター管理</div></a></li>
-									<li><a href="admin-coutnry.html"><div>国追加</div></a></li>
-									<li><a href="admin-category-skate.html"><div>カテゴリー（スケート関連）</div></a></li>
-									<li><a href="admin-category-tops.html"><div>カテゴリー（トップス関連）</div></a></li>
+									<li><a href="{{ route('skater.admin') }}"><div>スケーター管理</div></a></li>
+									<li><a href="{{ route('country.index') }}"><div>国追加</div></a></li>
+									<li><a href="{{ route('category.index') }}"><div>カテゴリー（スケート関連）</div></a></li>
 								</ul>
 
 							</div>

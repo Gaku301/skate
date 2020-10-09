@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('category_id')->constrained('categories');
             $table->string('product_name');
             $table->string('product_introduction');
-            $table->string('product_img');
+            $table->string('product_img')->nullable();
             $table->timestamps();
         });
     }

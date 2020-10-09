@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     // 記事
     Route::get('/admin/post/{skater}', 'PostController@index')->name('post.index');
+    Route::post('/admin/post/{skater}', 'PostController@store')->name('post.store');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

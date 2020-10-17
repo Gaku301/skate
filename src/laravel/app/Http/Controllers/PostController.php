@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
 use App\Models\Post;
 use App\Models\Skater;
 
@@ -18,7 +19,6 @@ class PostController extends Controller
 
     public function store(CreatePostRequest $request)
     {
-        // dd($request);
         $post = new Post($request->except(['_token']));
         $post->save();
 
@@ -31,5 +31,13 @@ class PostController extends Controller
         $post = Post::find($post->id);
 
         return view('post.show', ['skater' => $skater, 'post' => $post]);
+    }
+
+    public function update(Skater $skater, Post $post, UpdatePostRequest $request)
+    {
+        $post = Post::find($request->id);
+        $post->fill($request->except(['_token']))->update();
+
+        return redirect()->back()->with('msg_success', '記事を変更しました。');
     }
 }

@@ -31,18 +31,23 @@
 
 						<h3>記事情報</h3>
 
-						<form>
+						<form action="{{ route('post.update',['skater' => $skater, 'post' => $post]) }}" method="POST">
+							@csrf
+							@method("PATCH")
+
+							<input type="hidden" class="form-control" id="" placeholder="name" name="id" value="{{ $post->id }}">
+							<input type="hidden" class="form-control" id="" placeholder="name" name="skater_id" value="{{ $skater->id }}">
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品名</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" placeholder="name" value="{{ $post->product_name }}">
+									<input type="text" class="form-control" id="" placeholder="name" name="product_name" value="{{ $post->product_name }}">
 									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="country" class="col-sm-2 col-form-label">カテゴリー名</label>
 								<div class="col-sm-10">
-									<select class="form-control" name="country" id="">
+									<select class="form-control" name="category_id" id="">
 										<option value="{{ $post->category_id }}">{{ $post->category->category_name }}</option>
 										@foreach (\App\Models\Category::where('id', '!=', $post->category_id)->get() as $category)
 										<option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -53,19 +58,19 @@
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品説明</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" id="" rows="5">{{ $post->product_introduction }}</textarea>
+									<textarea class="form-control" id="" rows="5" name="product_introduction">{{ $post->product_introduction }}</textarea>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">画像</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file">
+									<input type="file" class="form-control-file" id="file" name="product_img">
 								</div>
 							</div>
 							<div class="form-group row center mt-5">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-aqua">変更</button>
-									<button type="submit" class="button button-red">削除</button>
+									<button type="button" class="button button-red">削除</button>
 								</div>
 							</div>
 						</form>

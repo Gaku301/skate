@@ -40,7 +40,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/admin/post/{skater}', 'PostController@index')->name('post.index');
     Route::post('/admin/post/{skater}', 'PostController@store')->name('post.store');
     Route::get('/admin/post/{skater}/{post}', 'PostController@show')->name('post.show');
-
+    Route::patch('/admin/post/{skater}/{post}', 'PostController@update')->name('post.update');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

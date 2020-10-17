@@ -24,4 +24,12 @@ class PostController extends Controller
 
         return redirect()->back()->with('msg_success', '記事を追加しました。');
     }
+
+    public function show(Skater $skater, Post $post)
+    {
+        $skater = Skater::find($skater->id);
+        $post = Post::find($post->id);
+
+        return view('post.show', ['skater' => $skater, 'post' => $post]);
+    }
 }

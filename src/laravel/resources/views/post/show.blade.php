@@ -3,7 +3,7 @@
 @section('content')
 	
 
-		<!-- Page Title
+<!-- Page Title
 		============================================= -->
 		<section id="page-title">
 
@@ -29,23 +29,22 @@
 
 					<div class="postcontent">
 
-						<h3>記事作成</h3>
+						<h3>記事情報</h3>
 
-						<form action="{{ route('post.store', ['skater' => $skater]) }}" method="POST">
-							@csrf
+						<form>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品名</label>
 								<div class="col-sm-10">
-									<input type="hidden" class="form-control" id="" name="skater_id" value="{{ $skater->id }}">
-									<input type="text" class="form-control" id="" placeholder="name" name="product_name" required>
+									<input type="text" class="form-control" id="" placeholder="name" value="{{ $post->product_name }}">
+									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="country" class="col-sm-2 col-form-label">カテゴリー名</label>
 								<div class="col-sm-10">
-									<select class="form-control" name="category_id" id="" required>
-										<option value=""></option>
-										@foreach (\App\Models\Category::all() as $category)
+									<select class="form-control" name="country" id="">
+										<option value="{{ $post->category_id }}">{{ $post->category->category_name }}</option>
+										@foreach (\App\Models\Category::where('id', '!=', $post->category_id)->get() as $category)
 										<option value="{{ $category->id }}">{{ $category->category_name }}</option>
 										@endforeach
 									</select>
@@ -54,47 +53,24 @@
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品説明</label>
 								<div class="col-sm-10">
-									<textarea class="form-control" id="" rows="5" name="product_introduction" required></textarea>
+									<textarea class="form-control" id="" rows="5">{{ $post->product_introduction }}</textarea>
 								</div>
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">画像</label>
 								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file" name="product_img">
+									<input type="file" class="form-control-file" id="file">
 								</div>
 							</div>
 							<div class="form-group row center mt-5">
 								<div class="col-sm-10">
-									<button type="submit" class="button button-blue">追加</button>
+									<button type="submit" class="button button-aqua">変更</button>
+									<button type="submit" class="button button-red">削除</button>
 								</div>
 							</div>
 						</form>
 
 						<div class="line"></div>
-
-					
-						<div id="shop" class="shop product-3 grid-container clearfix" data-layout="fitRows">
-
-							@foreach ($posts as $post)
-								
-							<article class="portfolio-item pf-media pf-icons">
-								<div class="portfolio-image">
-									<a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">
-										<img src="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}" alt="Open Imagination">
-									</a>
-									<a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">
-										<div class="portfolio-overlay"></div>
-									</a>
-								</div>
-								<div class="portfolio-desc">
-									<h3><a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">{{ $post->product_name }}</a></h3>
-									<span><a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">説明</a></span>
-								</div>
-							</article>
-							@endforeach
-
-						</div>
-
 
 						<!-- Modal -->
 						<div class="modal fade" id="modal-danger">

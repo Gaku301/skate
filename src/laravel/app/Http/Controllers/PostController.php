@@ -40,4 +40,11 @@ class PostController extends Controller
 
         return redirect()->back()->with('msg_success', '記事を変更しました。');
     }
+
+    public function destroy(Skater $skater, Post $post)
+    {
+        Post::destroy($post->id);
+
+        return redirect()->route('post.index', ['skater' => $skater])->with('msg_warning', '記事を削除しました。');
+    }
 }

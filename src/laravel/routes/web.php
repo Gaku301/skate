@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('/admin/post/{skater}', 'PostController@store')->name('post.store');
     Route::get('/admin/post/{skater}/{post}', 'PostController@show')->name('post.show');
     Route::patch('/admin/post/{skater}/{post}', 'PostController@update')->name('post.update');
+    Route::delete('/admin/post/{skater}/{post}', 'PostController@destroy')->name('post.destroy');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

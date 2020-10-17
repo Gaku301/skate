@@ -70,7 +70,7 @@
 							<div class="form-group row center mt-5">
 								<div class="col-sm-10">
 									<button type="submit" class="button button-aqua">変更</button>
-									<button type="button" class="button button-red">削除</button>
+									<button type="button" class="button button-red" data-toggle="modal" data-target="#modal-danger">削除</button>
 								</div>
 							</div>
 						</form>
@@ -78,6 +78,9 @@
 						<div class="line"></div>
 
 						<!-- Modal -->
+						<form action="{{ route('post.destroy', ['skater' => $skater, 'post' => $post]) }}" method="POST">
+							@csrf
+							@method("DELETE")
 						<div class="modal fade" id="modal-danger">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -88,11 +91,12 @@
 								  </button>
 								</div>
 								<div class="modal-body">
-								  <p class="">「スケーター名」に関する全ての記事が削除されますがよろしいですか？</p>
+								<input type="hidden" class="form-control" id="" placeholder="name" name="id" value="{{ $post->id }}">
+								  <p class="">記事が削除されますがよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
-								  <button type="button" class="button button-red">削除</button>
+								  <button type="submit" class="button button-red">削除</button>
 								</div>
 							  </div>
 							  <!-- /.modal-content -->
@@ -100,6 +104,7 @@
 							<!-- /.modal-dialog -->
 						  </div>
 						  <!-- /.modal -->
+						</form>
 
 
 						<div class="line"></div>

@@ -31,7 +31,7 @@
 
 						<h3>{{ $skater->name }}</h3>
 
-						<form action="{{ route('skater.update', ['skater' => $skater ]) }}" method="POST">
+						<form action="{{ route('skater.update', ['skater' => $skater ]) }}" method="POST" enctype='multipart/form-data'>
 							@csrf
 							@method("PATCH")
 							<div class="form-group row">
@@ -78,8 +78,11 @@
 							</div>
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">画像</label>
-								<div class="col-sm-10">
-									<input type="file" class="form-control-file" id="file">
+								<div class="col-sm-5">
+									<img src="/storage/thumbnail/{{ $skater->thumbnail }}" alt="サムネイル画像">
+								</div>
+								<div class="col-sm-5">
+									<input type="file" class="form-control-file" id="file" name="thumbnail">
 								</div>
 							</div>
 							<div class="form-group row center mt-5">

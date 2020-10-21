@@ -159,8 +159,7 @@
 								<ul>
 									<li><a href="{{ route('skater.admin') }}"><div>スケーター管理</div></a></li>
 									<li><a href="{{ route('country.index') }}"><div>国追加</div></a></li>
-									<li><a href="admin-category-skate.html"><div>カテゴリー（スケート関連）</div></a></li>
-									<li><a href="admin-category-tops.html"><div>カテゴリー（トップス関連）</div></a></li>
+									<li><a href="{{ route('category.index') }}"><div>カテゴリー（スケート関連）</div></a></li>
 								</ul>
 
 							</div>

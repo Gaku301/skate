@@ -16,32 +16,37 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontController@index')->name('front.index');
 
 //管理者のみ
-Route::group(['middleware' => ['auth']], function () {
+Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     // スケーター管理
-    Route::get('/admin', 'SkaterController@index')->name('skater.admin');
-    Route::post('/admin', 'SkaterController@store')->name('skater.store');
-    Route::get('/admin/show/{skater}', 'SkaterController@show')->name('skater.show');
-    Route::patch('/admin/show/{skater}', 'SkaterController@update')->name('skater.update');
-    Route::delete('/admin/show/{skater}', 'SkaterController@destroy')->name('skater.destroy');
-
+    Route::group(['as' => 'skater.'], function () {
+        Route::get('', 'SkaterController@index')->name('admin');
+        Route::post('', 'SkaterController@store')->name('store');
+        Route::get('/show/{skater}', 'SkaterController@show')->name('show');
+        Route::patch('/show/{skater}', 'SkaterController@update')->name('update');
+        Route::delete('/show/{skater}', 'SkaterController@destroy')->name('destroy');
+    });
     // 国管理
-    Route::get('/admin/country', 'CountryController@index')->name('country.index');
-    Route::post('/admin/country', 'CountryController@store')->name('country.store');
-    Route::patch('/admin/country', 'CountryController@update')->name('country.update');
-    Route::delete('/admin/country', 'CountryController@destroy')->name('country.destroy');
-
+    Route::group(['prefix' => 'country', 'as' => 'country.'], function () {
+        Route::get('', 'CountryController@index')->name('index');
+        Route::post('', 'CountryController@store')->name('store');
+        Route::patch('', 'CountryController@update')->name('update');
+        Route::delete('', 'CountryController@destroy')->name('destroy');
+    });
     // カテゴリ
-    Route::get('/admin/category', 'CategoryController@index')->name('category.index');
-    Route::post('/admin/category', 'CategoryController@store')->name('category.store');
-    Route::patch('/admin/category', 'CategoryController@update')->name('category.update');
-    Route::delete('/admin/category', 'CategoryController@destroy')->name('category.destroy');
-
+    Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
+        Route::get('', 'CategoryController@index')->name('index');
+        Route::post('', 'CategoryController@store')->name('store');
+        Route::patch('', 'CategoryController@update')->name('update');
+        Route::delete('', 'CategoryController@destroy')->name('destroy');
+    });
     // 記事
-    Route::get('/admin/post/{skater}', 'PostController@index')->name('post.index');
-    Route::post('/admin/post/{skater}', 'PostController@store')->name('post.store');
-    Route::get('/admin/post/{skater}/{post}', 'PostController@show')->name('post.show');
-    Route::patch('/admin/post/{skater}/{post}', 'PostController@update')->name('post.update');
-    Route::delete('/admin/post/{skater}/{post}', 'PostController@destroy')->name('post.destroy');
+    Route::group(['prefix' => 'post/{skater}', 'as' => 'post.'], function () {
+        Route::get('', 'PostController@index')->name('index');
+        Route::post('', 'PostController@store')->name('store');
+        Route::get('/{post}', 'PostController@show')->name('show');
+        Route::patch('/{post}', 'PostController@update')->name('update');
+        Route::delete('/{post}', 'PostController@destroy')->name('destroy');
+    });
 });
 
 Route::get('/home', 'HomeController@index')->name('home');

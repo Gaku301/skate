@@ -60,15 +60,15 @@
 						@foreach ($skaters as $skater)
 						<article class="portfolio-item pf-media pf-icons">
 							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="storage/thumbnail/{{ $skater->thumbnail }}" alt="画像">
+								<a href="{{ route('front.show', ['skater' => $skater ]) }}">
+									<img src="/storage/thumbnail/{{ $skater->thumbnail }}" alt="画像">
 								</a>
-								<a href="shop-3-left-sidebar.html">
+								<a href="{{ route('front.show', ['skater' => $skater ]) }}">
 									<div class="portfolio-overlay"></div>
 								</a>
 							</div>
 							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">{{ $skater->name }}</a></h3>
+								<h3><a href="{{ route('front.show', ['skater' => $skater ]) }}">{{ $skater->name }}</a></h3>
 								<span><a href="#">{{ $skater->country->country_name }}</a></span>
 							</div>
 						</article>

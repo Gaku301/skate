@@ -13,7 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// 共通
 Route::get('/', 'FrontController@index')->name('front.index');
+Route::get('/skater/{skater}', 'FrontController@show')->name('front.show');
 
 //管理者のみ
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {

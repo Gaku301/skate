@@ -12,4 +12,9 @@ class Skater extends Model
     {
         return $this->belongsTo('App\Models\Country');
     }
+
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }

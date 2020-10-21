@@ -12,4 +12,9 @@ class Post extends Model
     {
         return $this->belongsTo('App\Models\Category');
     }
+
+    public function skater()
+    {
+        return $this->belongsTo('App\Models\Skater');
+    }
 }

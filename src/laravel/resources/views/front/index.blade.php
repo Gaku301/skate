@@ -57,136 +57,26 @@
 				    <h2>All</h2>
 
 					<div id="portfolio" class="portfolio grid-container clearfix">
-
+						@foreach ($skaters as $skater)
 						<article class="portfolio-item pf-media pf-icons">
 							<div class="portfolio-image">
 								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/1.jpg" alt="Open Imagination">
+									<img src="storage/thumbnail/{{ $skater->thumbnail }}" alt="画像">
 								</a>
 								<a href="shop-3-left-sidebar.html">
 									<div class="portfolio-overlay"></div>
 								</a>
 							</div>
 							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">スケータ名</a></h3>
-								<span><a href="#">国名</a></span>
+								<h3><a href="shop-3-left-sidebar.html">{{ $skater->name }}</a></h3>
+								<span><a href="#">{{ $skater->country->country_name }}</a></span>
 							</div>
 						</article>
 
-						<article class="portfolio-item pf-illustrations">
-							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/2.jpg" alt="Locked Steel Gate">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">Felipe Gutav</a></h3>
-								<span><a href="#">ブラジル</a></span>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-graphics pf-uielements">
-							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/3.jpg" alt="Mac Sunglasses">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">Mac Sunglasses</a></h3>
-								<span><a href="#">アメリカ</a></span>
-							</div>
-						</article>
-
-
-						<article class="portfolio-item pf-uielements pf-media">
-							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/5.jpg" alt="Console Activity">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">Console Activity</a></h3>
-								<span><a href="#">イギリス</a></span>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-uielements pf-icons">
-							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/7.jpg" alt="Backpack Contents">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">Backpack Contents</a></h3>
-								<span><a href="#">イギリス</a></span>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-graphics">
-							<div class="portfolio-image">
-								<a href="shop-3-left-sidebar.html">
-									<img src="images/portfolio/4/8.jpg" alt="Sunset Bulb Glow">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="shop-3-left-sidebar.html">Sunset Bulb Glow</a></h3>
-								<span><a href="#">アメリカ</a></span>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-graphics pf-media pf-uielements">
-							<div class="portfolio-image">
-								<a href="portfolio-single-video.html">
-									<img src="images/portfolio/4/10.jpg" alt="Study Table">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="portfolio-single-video.html">Study Table</a></h3>
-								<span><a href="#">Graphics</a>, <a href="#">Media</a></span>
-							</div>
-						</article>
-
-						<article class="portfolio-item pf-media pf-icons">
-							<div class="portfolio-image">
-								<a href="portfolio-single.html">
-									<img src="images/portfolio/4/11.jpg" alt="Workspace Stuff">
-								</a>
-								<a href="shop-3-left-sidebar.html">
-									<div class="portfolio-overlay"></div>
-								</a>
-							</div>
-							<div class="portfolio-desc">
-								<h3><a href="portfolio-single.html">Workspace Stuff</a></h3>
-								<span><a href="#">Media</a>, <a href="#">Icons</a></span>
-							</div>
-						</article>
+						@endforeach
 
 						<ul class="pagination pagination-circle mt-4">
-						  <li class="page-item disabled"><a class="page-link" href="#" aria-label="Previous"> <span aria-hidden="true">&laquo;</span></a></li>
-						  <li class="page-item active"><a class="page-link" href="#">1</a></li>
-						  <li class="page-item"><a class="page-link" href="#">2</a></li>
-						  <li class="page-item"><a class="page-link" href="#">3</a></li>
-						  <li class="page-item"><a class="page-link" href="#">4</a></li>
-						  <li class="page-item"><a class="page-link" href="#">5</a></li>
-						  <li class="page-item"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+							{{ $skaters->links() }}
 						</ul>
 
 					</div><!-- #portfolio end -->

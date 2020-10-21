@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Skater;
+
 class FrontController extends Controller
 {
     public function index()
     {
-        return view('front.index');
+        $skaters = Skater::paginate(16);
+
+        return view('front.index',['skaters' => $skaters]);
     }
 }

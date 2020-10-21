@@ -31,7 +31,7 @@
 
 						<h3>記事作成</h3>
 
-						<form action="{{ route('post.store', ['skater' => $skater]) }}" method="POST">
+						<form action="{{ route('post.store', ['skater' => $skater]) }}" method="POST" enctype='multipart/form-data'>
 							@csrf
 							<div class="form-group row">
 								<label for="name" class="col-sm-2 col-form-label">商品名</label>
@@ -80,7 +80,7 @@
 							<article class="portfolio-item pf-media pf-icons">
 								<div class="portfolio-image">
 									<a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">
-										<img src="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}" alt="Open Imagination">
+										<img src="/storage/post/{{ $post->product_img }}" alt="画像">
 									</a>
 									<a href="{{ route('post.show', ['skater' => $skater, 'post' => $post ]) }}">
 										<div class="portfolio-overlay"></div>

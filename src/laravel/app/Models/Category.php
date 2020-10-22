@@ -12,4 +12,9 @@ class Category extends Model
     {
         return $this->hasMany('App\Models\Country');
     }
+
+    public function features()
+    {
+        return $this->hasMany('App\Models\Feature');
+    }
 }

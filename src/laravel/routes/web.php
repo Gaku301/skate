@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontController@index')->name('front.index');
 Route::get('/skater/{skater}', 'FrontController@show')->name('front.show');
 
-//管理者のみ
+// only admin
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
-    // スケーター管理
+    // skater
     Route::group(['as' => 'skater.'], function () {
         Route::get('', 'SkaterController@index')->name('admin');
         Route::post('', 'SkaterController@store')->name('store');
@@ -27,21 +27,28 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::patch('/show/{skater}', 'SkaterController@update')->name('update');
         Route::delete('/show/{skater}', 'SkaterController@destroy')->name('destroy');
     });
-    // 国管理
+    // country
     Route::group(['prefix' => 'country', 'as' => 'country.'], function () {
         Route::get('', 'CountryController@index')->name('index');
         Route::post('', 'CountryController@store')->name('store');
         Route::patch('', 'CountryController@update')->name('update');
         Route::delete('', 'CountryController@destroy')->name('destroy');
     });
-    // カテゴリ
+    // category
     Route::group(['prefix' => 'category', 'as' => 'category.'], function () {
         Route::get('', 'CategoryController@index')->name('index');
         Route::post('', 'CategoryController@store')->name('store');
         Route::patch('', 'CategoryController@update')->name('update');
         Route::delete('', 'CategoryController@destroy')->name('destroy');
     });
-    // 記事
+    // feature
+    Route::group(['prefix' => 'feature', 'as' => 'feature.'], function () {
+        Route::get('', 'FeatureController@index')->name('index');
+        Route::post('', 'FeatureController@store')->name('store');
+        // Route::patch('', 'FeatureController@update')->name('update');
+        // Route::delete('', 'FeatureController@destroy')->name('destroy');
+    });
+    // post
     Route::group(['prefix' => 'post/{skater}', 'as' => 'post.'], function () {
         Route::get('', 'PostController@index')->name('index');
         Route::post('', 'PostController@store')->name('store');

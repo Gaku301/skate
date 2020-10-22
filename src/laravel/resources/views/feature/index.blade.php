@@ -1,15 +1,14 @@
 @extends('layouts.master')
 
 @section('content')
-
+	
 
 		<!-- Page Title
 		============================================= -->
 		<section id="page-title">
 
 			<div class="container clearfix">
-				<h1>カテゴリー管理</h1>
-				<span>Ways to enhance your Forms</span>
+				<h1>フィーチャー管理</h1>
 				<ol class="breadcrumb">
 					<li class="breadcrumb-item"><a href="#">Home</a></li>
 					<li class="breadcrumb-item"><a href="#">Shortcodes</a></li>
@@ -29,14 +28,26 @@
 
 					<div class="postcontent">
 
-						<h3>カテゴリ追加</h3>
+						<h3>フィーチャー追加</h3>
 
-						<form action="{{ route('category.store') }}" method="POST">
+						<form action="{{ route('feature.store') }}" method="POST">
 							@csrf
 							<div class="form-group row">
-								<label for="name" class="col-sm-2 col-form-label">名称</label>
+								<label for="country" class="col-sm-2 col-form-label">カテゴリー</label>
 								<div class="col-sm-10">
-									<input type="text" class="form-control" id="" name="category_name" placeholder="name" required>
+									<select class="form-control" name="category_id" id="" required>
+										<option value=""></option>
+										@foreach (App\Models\Category::all() as $category)
+										<option value="{{ $category->id }}">{{ $category->category_name }}</option>
+										@endforeach
+									</select>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label for="country_name" class="col-sm-2 col-form-label">フィーチャー名</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="feature_name" name="feature_name" placeholder="name" required>
+									<small id="" class="form-text text-muted">We'll never share your email with anyone else.</small>
 								</div>
 							</div>
 							<div class="form-group row center">
@@ -54,32 +65,34 @@
 						  <thead>
 							<tr>
 							  <th>id</th>
-							  <th>名称</th>
+							  <th>カテゴリー</th>
+							  <th>フィーチャー名</th>
 							  <th></th>
 							</tr>
 						  </thead>
 						  <tbody>
-							  @foreach ($categories as $category)
+							@foreach ($features as $feature)
 							<tr>
-							  <td>{{ $category->id }}</td>
-							  <td>{{ $category->category_name }}</td>
+							  <td>{{ $feature->id }}</td>
+							  <td>{{ $feature->category->category_name }}</td>
+							  <td>{{ $feature->feature_name }}</td>
 							  <td>
-								<button type="button" class="button button-aqua button-mini category-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $category->id }}" data-name="{{ $category->category_name }}">変更</button>
-								<button type="button" class="button button-red button-mini category-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $category->id }}">削除</button>
+								{{-- <button type="button" class="button button-aqua button-mini country-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $country->id }}" data-name="{{ $country->country_name }}">変更</button> --}}
+								{{-- <button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $country->id }}">削除</button> --}}
 							  </td>
 							</tr>
-							  @endforeach
+							@endforeach
 						  </tbody>
 						</table>
 
 						<ul class="pagination pagination-circle pagination-sm">
-							{{ $categories->links() }}
+							{{ $features->links() }}
 						</ul>
 
 						<!-- Modal -->
-						<form action="{{ route('category.update') }}" method="POST">
-							@csrf
+						<form action="{{ route('country.update') }}" method="POST">
 							@method("PATCH")
+							@csrf
 						<div class="modal fade" id="modal-default">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -91,10 +104,10 @@
 								</div>
 								<div class="modal-body">
 									<div class="form-group row">
-										<label for="name" class="col-sm-2 col-form-label">名称</label>
+										<label for="name" class="col-sm-2 col-form-label">国名称</label>
 										<div class="col-sm-10">
-											<input type="hidden" class="form-control" id="category-id" name="id">
-											<input type="text" class="form-control" id="category-name" name="category_name">
+											<input type="hidden" class="form-control" id="country-id" name="id">
+											<input type="text" class="form-control" id="country-name" name="country_name" placeholder="name">
 										</div>
 									</div>
 								</div>
@@ -107,14 +120,14 @@
 							</div>
 							<!-- /.modal-dialog -->
 						  </div>
-						  <!-- /.modal -->
 						</form>
+						  <!-- /.modal -->
 
 
 						<!-- Modal -->
-						<form action="{{ route('category.destroy') }}" method="POST">
-							@csrf
+						<form action="{{ route('country.destroy') }}" method="POST">
 							@method("DELETE")
+							@csrf
 						<div class="modal fade" id="modal-danger">
 							<div class="modal-dialog">
 							  <div class="modal-content">
@@ -126,7 +139,7 @@
 								</div>
 								<div class="modal-body">
 									<input type="hidden" class="form-control" id="delete-id" name="id">
-									<p class="">カテゴリーを削除してよろしいですか？</p>
+									<p class="">国を削除してよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
@@ -137,8 +150,9 @@
 							</div>
 							<!-- /.modal-dialog -->
 						  </div>
-						  <!-- /.modal -->
 						</form>
+						  <!-- /.modal -->
+
 
 
 						<div class="line"></div>
@@ -157,8 +171,7 @@
 								<ul>
 									<li><a href="{{ route('skater.admin') }}"><div>スケーター管理</div></a></li>
 									<li><a href="{{ route('country.index') }}"><div>国追加</div></a></li>
-									<li><a href="{{ route('category.index') }}"><div>カテゴリー</div></a></li>
-									<li><a href="{{ route('feature.index') }}"><div>フィーチャー</div></a></li>
+									<li><a href="{{ route('category.index') }}"><div>カテゴリー（スケート関連）</div></a></li>
 								</ul>
 
 							</div>
@@ -166,12 +179,12 @@
 						</div>
 					</div><!-- .sidebar end -->
 
+
 				</div>
 
 			</div>
 
 		</section><!-- #content end -->
-
 
 
 @endsection
@@ -181,15 +194,15 @@
 	<script>
 		// edit
 		$(function(){
-			$('.category-edit').click((event) => {
+			$('.country-edit').click((event) => {
 				const target = $(event.target);
-				$('#category-id').val(target.data('id'));
-				$('#category-name').val(target.data('name'));
+				$('#country-id').val(target.data('id'));
+				$('#country-name').val(target.data('name'));
 			})
 		})
 		// delete
 		$(function(){
-			$('.category-delete').click((event) => {
+			$('.country-delete').click((event) => {
 				const target = $(event.target);
 				$('#delete-id').val(target.data('id'));
 			})

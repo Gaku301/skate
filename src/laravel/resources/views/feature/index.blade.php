@@ -78,7 +78,7 @@
 							  <td>{{ $feature->feature_name }}</td>
 							  <td>
 								<button type="button" class="button button-aqua button-mini feature-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $feature->id }}" data-category="{{ $feature->category_id }}" data-name="{{ $feature->feature_name }}">変更</button>
-								{{-- <button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $country->id }}">削除</button> --}}
+								<button type="button" class="button button-red button-mini feature-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $feature->id }}">削除</button>
 							  </td>
 							</tr>
 							@endforeach
@@ -126,7 +126,7 @@
 
 
 						<!-- Modal -->
-						<form action="{{ route('country.destroy') }}" method="POST">
+						<form action="{{ route('feature.destroy') }}" method="POST">
 							@method("DELETE")
 							@csrf
 						<div class="modal fade" id="modal-danger">
@@ -140,7 +140,7 @@
 								</div>
 								<div class="modal-body">
 									<input type="hidden" class="form-control" id="delete-id" name="id">
-									<p class="">国を削除してよろしいですか？</p>
+									<p class="">フィーチャーを削除してよろしいですか？</p>
 								</div>
 								<div class="modal-footer justify-content-between">
 								  <button type="button" class="button button-light" data-dismiss="modal">Close</button>
@@ -205,7 +205,7 @@
 		})
 		// delete
 		$(function(){
-			$('.country-delete').click((event) => {
+			$('.feature-delete').click((event) => {
 				const target = $(event.target);
 				$('#delete-id').val(target.data('id'));
 			})

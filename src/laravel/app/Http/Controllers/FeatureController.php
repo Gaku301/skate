@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateFeatureRequest;
 use App\Http\Requests\UpdateFeatureRequest;
 use App\Models\Feature;
+use Illuminate\Http\Request;
 
 class FeatureController extends Controller
 {
@@ -29,5 +30,12 @@ class FeatureController extends Controller
         $feature->fill($request->except(['_token']))->update();
 
         return redirect()->back()->with('msg_success', 'フィーチャーを変更しました。');
+    }
+
+    public function destroy(Request $request)
+    {
+        Feature::destroy($request->id);
+
+        return redirect()->back()->with('msg_warning', 'フィーチャーを削除しました。');
     }
 }

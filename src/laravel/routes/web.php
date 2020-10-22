@@ -46,7 +46,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
         Route::get('', 'FeatureController@index')->name('index');
         Route::post('', 'FeatureController@store')->name('store');
         Route::patch('', 'FeatureController@update')->name('update');
-        // Route::delete('', 'FeatureController@destroy')->name('destroy');
+        Route::delete('', 'FeatureController@destroy')->name('destroy');
     });
     // post
     Route::group(['prefix' => 'post/{skater}', 'as' => 'post.'], function () {

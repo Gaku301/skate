@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
     Route::group(['prefix' => 'feature', 'as' => 'feature.'], function () {
         Route::get('', 'FeatureController@index')->name('index');
         Route::post('', 'FeatureController@store')->name('store');
-        // Route::patch('', 'FeatureController@update')->name('update');
+        Route::patch('', 'FeatureController@update')->name('update');
         // Route::delete('', 'FeatureController@destroy')->name('destroy');
     });
     // post

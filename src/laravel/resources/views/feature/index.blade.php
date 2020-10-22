@@ -77,7 +77,7 @@
 							  <td>{{ $feature->category->category_name }}</td>
 							  <td>{{ $feature->feature_name }}</td>
 							  <td>
-								{{-- <button type="button" class="button button-aqua button-mini country-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $country->id }}" data-name="{{ $country->country_name }}">変更</button> --}}
+								<button type="button" class="button button-aqua button-mini feature-edit" data-toggle="modal" data-target="#modal-default" data-id="{{ $feature->id }}" data-category="{{ $feature->category_id }}" data-name="{{ $feature->feature_name }}">変更</button>
 								{{-- <button type="button" class="button button-red button-mini country-delete" data-toggle="modal" data-target="#modal-danger" data-id="{{ $country->id }}">削除</button> --}}
 							  </td>
 							</tr>
@@ -90,7 +90,7 @@
 						</ul>
 
 						<!-- Modal -->
-						<form action="{{ route('country.update') }}" method="POST">
+						<form action="{{ route('feature.update') }}" method="POST">
 							@method("PATCH")
 							@csrf
 						<div class="modal fade" id="modal-default">
@@ -104,10 +104,11 @@
 								</div>
 								<div class="modal-body">
 									<div class="form-group row">
-										<label for="name" class="col-sm-2 col-form-label">国名称</label>
+										<label for="name" class="col-sm-2 col-form-label">フィーチャー名</label>
 										<div class="col-sm-10">
-											<input type="hidden" class="form-control" id="country-id" name="id">
-											<input type="text" class="form-control" id="country-name" name="country_name" placeholder="name">
+											<input type="hidden" class="form-control" id="feature-id" name="id">
+											<input type="hidden" class="form-control" id="category-id" name="category_id">
+											<input type="text" class="form-control" id="feature-name" name="feature_name" placeholder="name" required>
 										</div>
 									</div>
 								</div>
@@ -171,7 +172,8 @@
 								<ul>
 									<li><a href="{{ route('skater.admin') }}"><div>スケーター管理</div></a></li>
 									<li><a href="{{ route('country.index') }}"><div>国追加</div></a></li>
-									<li><a href="{{ route('category.index') }}"><div>カテゴリー（スケート関連）</div></a></li>
+									<li><a href="{{ route('category.index') }}"><div>カテゴリー</div></a></li>
+									<li><a href="{{ route('feature.index') }}"><div>フィーチャー</div></a></li>
 								</ul>
 
 							</div>
@@ -194,10 +196,11 @@
 	<script>
 		// edit
 		$(function(){
-			$('.country-edit').click((event) => {
+			$('.feature-edit').click((event) => {
 				const target = $(event.target);
-				$('#country-id').val(target.data('id'));
-				$('#country-name').val(target.data('name'));
+				$('#feature-id').val(target.data('id'));
+				$('#category-id').val(target.data('category'));
+				$('#feature-name').val(target.data('name'));
 			})
 		})
 		// delete

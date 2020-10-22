@@ -1,0 +1,91 @@
+@startuml
+
+package "スケーター紹介"{
+    entity "スケーター" as skaters{
+        + ID [PK]
+        --
+        名前(表示名)
+        #国ID [FK]
+        インスタグラム
+        ツイッター
+        フェイスブック
+        ユーチューブ
+        画像
+        #記事ID [FK]
+        作成日
+        更新日
+        削除日
+    }
+
+    entity "国" as countries{
+        +ID [PK]
+        --
+        国名（表示名）
+        作成日
+        更新日
+        削除日
+    }
+
+    entity "記事" as posts{
+        +ID [PK]
+        --
+        #スケーターID [FK]
+        #カテゴリーID [FK]
+        商品名
+        商品説明
+        画像
+        作成日
+        更新日
+        削除日
+    }
+
+    entity "カテゴリー" as categories{
+        +ID [PK]
+        --
+        カテゴリー名（表示名）
+        作成日
+        更新日
+        削除日
+    }
+
+    entity "カテゴリー詳細" as category_details{
+        +ID [PK]
+        --
+        #カテゴリーID [FK]
+        名前
+        作成日
+        更新日
+        削除日
+    }
+    
+    entity "ユーザー" as users{
+        +ID [PK]
+        --
+        名前
+        ロール
+        作成日
+        更新日
+        削除日
+    }
+
+skaters }o--ri--o| countries
+skaters }o--le--|{ posts
+posts }o--d--|{ categories
+categories --le--o{ category_details
+
+
+
+/'
+    ------   :1
+    ----||   :1 and only 1
+    ----o|   :0 or 1
+    -----{   :many
+    ----|{   :1 or more
+    ----o{   :0 or many
+'/
+
+
+
+}
+
+@endpuml

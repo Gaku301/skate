@@ -21,6 +21,9 @@
 | 管理者 | 記事を削除する | DELETE | PostController@destroy | /admin/show/post | post.delete |
 | 管理者 | 記事詳細情報ページを表示する | GET | PostController@show | /admin/show/post/{post_id} | post.show |
 | 管理者 | 記事を変更する | PATCH | PostController@update | /admin/show/post/{post_id} | post.update |
+| 管理者 | 国一覧ページを表示する | GET | CountryController@index | /admin/country | country.index |
+| 管理者 | 国を追加する | POST | CountryController@store | /admin/country | country.store |
+| 管理者 | 国を変更する | PATCH | CountryController@update | /admin/country | country.update |
 | 管理者 | カテゴリー一覧ページを表示する | GET | CategoryController | /admin/category | category.index |
 | 管理者 | カテゴリを追加する | POST | CategoryController@store | /admin/category | category.store
 | 管理者 | カテゴリーを変更する | PATCH | CategoryController@update | /admin/category | category.update |

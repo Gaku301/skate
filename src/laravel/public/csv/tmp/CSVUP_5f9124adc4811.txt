@@ -1,0 +1,3 @@
+石川　gaku ,instagram,twitter,facebook,youtube
+gaku,test,test,test,test
+学,テスト,テスト,テスト,テスト

@@ -19,8 +19,12 @@ Route::get('/skater/{skater}', 'FrontController@show')->name('front.show');
 
 // only admin
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin'], function () {
+    //csv
+    Route::get('/csv', 'CsvController@index')->name('csv.index');
+    Route::post('/csv', 'CsvController@import_csv')->name('csv.import');
     // skater
     Route::group(['as' => 'skater.'], function () {
+        // Route::post('', 'CsvController@import_csv')->name('csv');
         Route::get('', 'SkaterController@index')->name('admin');
         Route::post('', 'SkaterController@store')->name('store');
         Route::get('/show/{skater}', 'SkaterController@show')->name('show');

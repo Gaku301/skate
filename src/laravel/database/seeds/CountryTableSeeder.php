@@ -13,7 +13,7 @@ class CountryTableSeeder extends Seeder
      */
     public function run()
     {
-        $cantry_names = ['Japan', 'America', 'UK'];
+        $cantry_names = ['Japan', 'UK', 'USA', 'Brasil', 'Puerto Rico', 'Australia', 'Korea & Germany', 'France', 'Netherland', 'Canada', 'Portugal', 'Italia', 'Morocco', 'Peru', 'Jamaica'];
 
         foreach ($cantry_names as $cantry_name) {
             DB::table('countries')->insert([
